@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>F.T.I. Homepage</title>
+
+		<link rel="stylesheet" href="/main.css">
+
+		<!-- Metadata stuff -->
+		<!-- Used in things like embeds on sites -->
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+		<link rel="shortcut icon" href="assets/favicon/favicon.png">
+		<meta name="theme-color" content="#232628"> 
+		<meta name="og:type" content="website">
+		<meta name="og:image" content="assets/images/favicon.png">
+		<meta name="twitter:card" content="summary">
+		<meta name="og:title" content="F.T.I. Homepage">
+		<meta name="og:description" content="F.T.I. Homepage">
+		<meta name="description" content="F.T.I. Homepage">
+	</head>
+	
+	<body>
+		<section id="mainview">
+			<section id="titlebar">
+				<a href="/"><img id="logo" src="assets/favicon.png"></a>
+				<section class=wrapdiv>
+					<h1>Friend Team Inc.</h1>
+					<hr>
+					<p>
+						<a href="/">Home</a> &nbsp;
+						<a href="/about">About</a> &nbsp;
+						<a href="https://discord.friendteam.biz">Discord</a> &nbsp;
+						<a href="https://youtube.friendteam.biz">YouTube</a> &nbsp;
+						<a href="https://archive.friendteam.biz">Archive</a> &nbsp;
+						<a href="/lore">Lore</a> &nbsp;
+						<a href="/comics">Comic</a> &nbsp;
+						<a href="/contact">Contact</a>
+					</p>
+				</section>
+			</section>
+			
+			<div id="twitch-embed"></div>
+			<hr>
+			<p style="text-align:center;">Testing some things, please come back later!</p>
+			<hr>
+		
+			<!-- Load the Twitch embed script -->
+			<script src="https://embed.twitch.tv/embed/v1.js"></script>
+			<script type="text/javascript">
+				new Twitch.Embed("twitch-embed", {
+					width: "100%",
+					height: 600,
+					channel: "notquiteapex",
+					parent: ["friendteam.biz"]
+				});
+			</script>
+		</section>
+	</body>
+</html>
