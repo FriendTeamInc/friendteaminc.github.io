@@ -48,3 +48,13 @@ h1 {
 p {
 	font-family: "Lucida Console";
 }
+
+a:link {
+	color: #7c4;
+}
+a:visited {
+	color: #5a2;
+}
+a:active {
+	color: #fa2;
+}
