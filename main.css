@@ -56,7 +56,7 @@ h1 {
 h2 {
 	display: inline;
 	margin-top: 1%;
-	margin-bottom: 1%;
+	margin-bottom: 6px;
 	font-size: 24px;
 	font-family: "Inconsolata";
 	font-weight: 800;
@@ -65,7 +65,7 @@ h2 {
 h4 {
 	display: inline;
 	margin-top: 1%;
-	margin-bottom: 1%;
+	margin-bottom: 6px;
 	font-size: 16px;
 	font-family: "Inconsolata";
 	font-weight: 700;
@@ -73,7 +73,7 @@ h4 {
 h5 {
 	display: inline;
 	margin-top: 1%;
-	margin-bottom: 1%;
+	margin-bottom: 6px;
 	font-size: 12px;
 	font-family: "Inconsolata";
 	font-weight: 700;
@@ -82,6 +82,10 @@ h5 {
 p {
 	font-family: "Inconsolata";
 	font-weight: 500;
+}
+
+p.tab {
+	text-indent: 4em;
 }
 
 button {
