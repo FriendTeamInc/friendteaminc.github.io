@@ -53,6 +53,32 @@ h1 {
 	font-weight: 800;
 }
 
+h2 {
+	display: inline;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	font-size: 24px;
+	font-family: "Inconsolata";
+	font-weight: 800;
+}
+
+h4 {
+	display: inline;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	font-size: 16px;
+	font-family: "Inconsolata";
+	font-weight: 700;
+}
+h5 {
+	display: inline;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	font-size: 12px;
+	font-family: "Inconsolata";
+	font-weight: 700;
+}
+
 p {
 	font-family: "Inconsolata";
 	font-weight: 500;
