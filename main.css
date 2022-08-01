@@ -54,9 +54,12 @@ p {
 
 button {
 	font-family: "Inconsolata";
-	font-weight: 200;
-	font-size: 24px;
-	padding: 10px;
+	font-weight: 300;
+	font-size: 16px;
+	margin: 8px;
+	padding: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
 }
 
 a:link {
