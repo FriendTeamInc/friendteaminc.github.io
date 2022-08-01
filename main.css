@@ -24,9 +24,15 @@
 	align-content: center;
 }
 
-#twitch-embed {
-	align-content: center;
+#twitchEmbed {
+	max-width:1620px;
 	height: 720;
+	margin:auto;
+	align-content: center;
+}
+
+#copyrightNotice {
+	color: #666;
 }
 
 /* Classes */
@@ -70,4 +76,9 @@ a:visited {
 }
 a:active {
 	color: #fa2;
+}
+/* https://stackoverflow.com/a/52058198 */
+a[target="_blank"]:after {
+	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+	margin: 0 3px 0 5px;
 }

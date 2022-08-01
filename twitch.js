@@ -57,5 +57,5 @@ for (const channel of channels) {
     });
 }
 
-// put up the default stream
+// put up the first stream in the array (random)
 genTwitch(channels[0]);
