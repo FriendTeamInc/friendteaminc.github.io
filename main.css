@@ -44,10 +44,12 @@ h1 {
 	margin-bottom: 1%;
 	font-size: 32px;
 	font-family: "Inconsolata";
+	font-weight: 800;
 }
 
 p {
 	font-family: "Inconsolata";
+	font-weight: 500;
 }
 
 a:link {

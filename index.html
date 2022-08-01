@@ -42,21 +42,43 @@
 				<hr>
 			</section>
 			
-			<div id="twitch-embed" style="max-width:1620px; margin:auto;"></div>
+			<div id="twitchEmbed" style="max-width:1620px; margin:auto;"></div>
 			<hr>
 			<p style="text-align:center;">Testing some things, please come back later!</p>
 			<hr>
+			<div id="channelButtons" style="text-align:center;"></section>
+			<hr>
 		
-			<!-- Load the Twitch embed script -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="https://embed.twitch.tv/embed/v1.js"></script>
 			<script type="text/javascript">
-				new Twitch.Embed("twitch-embed", {
-					width: "100%",
-					height: 720,
+				let channels = [
+					"notquiteapex", "juicibit", "vivicaster",
+					"alkana", "percy_creates", "lyksaexe"
+				];
 
-					channel: "notquiteapex",
-					parent: ["friendteam.biz"]
-				});
+				let genTwitch = (channel) => {
+					$("#twitchEmbed").empty();
+					new Twitch.Embed("twitchEmbed", {
+						width: "100%",
+						height: 720,
+
+						channel: channel,
+						parent: ["friendteam.biz"]
+					});
+				}
+
+				for (const channel of channels) {
+					$(document).ready(function() {
+						let btn = document.createElement("button");
+						btn.innerHTML = channel;
+						btn.onclick = () => { genTwitch(channel); };
+						btn.align = "center";
+						$("#channelButtons").append(btn);
+					});
+				}
+
+				genTwitch(channels[0]);
 			</script>
 		</section>
 	</body>
