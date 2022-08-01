@@ -1,37 +1,10 @@
-/*             This is my CSS file,             *\
-|* there are many like it but this one is mine. *|
-\*                      :)                      */
-
-/* Here's the quick debugger. Uncomment it to use it. */
-/** { outline: solid 0.25rem hsla(200, 50%, 50%, 0.25); }*/
-
-/* IDs */
 #mainview {
 	background-color: #445;
-	margin: auto;
-	width: 80%;
 	min-width: 750px;
 }
 
 #titlebar {
-	position: -webkit-sticky;
-	position: sticky;
 	background-color: #445;
-	top: 0px;
-}
-
-#logo {
-	align-content: center;
-}
-
-#twitch-embed {
-	align-content: center;
-}
-
-/* Classes */
-.wrapdiv {
-	display: inline-block;
-	vertical-align: bottom;
 }
 
 html {
@@ -39,14 +12,9 @@ html {
 }
 
 h1 {
-	margin-top: 1%;
-	margin-bottom: 1%;
-	font-size: 32px;
-	font-family: "Lucida Console";
 	color: #ddd;
 }
 
 p {
-	font-family: "Lucida Console";
 	color: #ddd;
 }
