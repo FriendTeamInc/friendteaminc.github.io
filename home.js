@@ -75,11 +75,11 @@ for (const channel of trueChannels) {
     $(document).ready(function() {
         let btn = document.createElement("button");
         btn.innerHTML = channel["display"];
-        btn.onclick = () => { genTwitch(channel["channel"], channel["vod"]); };
+        btn.onclick = () => { generateTwitchElement(channel["channel"], channel["vod"]); };
         btn.align = "center";
         $("#channelButtons").append(btn);
     });
 }
 
 // put up the first stream in the array (random)
-genTwitch(trueChannels[0]["channel"], trueChannels[0]["vod"]);
+generateTwitchElement(trueChannels[0]["channel"], trueChannels[0]["vod"]);
