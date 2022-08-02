@@ -62,4 +62,4 @@ for (const channel of channels) {
 }
 
 // put up the first stream in the array (random)
-genTwitch(channels[0]);
+genTwitch(channels[0]["channel"]);
