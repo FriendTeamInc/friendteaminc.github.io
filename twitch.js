@@ -75,8 +75,8 @@ function twitchGetLatestVod(userLogin) {
 		dataType: "json",
 		success: (data) => {
 			if (data["data"].length === 0) {
-				console.error(`Could not find user with name ${userLogin}.`);
-				console.error(data);
+				console.warn(`Could not find user with name ${userLogin}.`);
+				console.warn(data);
 				return;
 			}
 
@@ -101,8 +101,8 @@ function twitchGetLatestVod(userLogin) {
 		dataType: "json",
 		success: (data) => {
 			if (data["data"].length === 0) {
-				console.error(`Could not find VODs for user with name ${userLogin}.`);
-				console.error(data);
+				console.warn(`Could not find VODs for user with name ${userLogin}.`);
+				console.warn(data);
 				return;
 			}
 
