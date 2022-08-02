@@ -1,65 +1,108 @@
-// MAKE EXTRA SURE THAT THE TWITCH MODULE AND JQUERY MODULES ARE ALREADY INCLUDED
-// IF NOT THIS SCRIPT WILL BREAK FAST. AND NOT THE MEAL.
-// <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-// <script src="https://embed.twitch.tv/embed/v1.js"></script>
+// Don't do this. apexLUL
+let clientID = "l74qhyxziqvrdz9q87g0dvxtptvix8";
+let clientSecret = "9sbfbnd3wry7z5w71oh410ifklosda";
 
-// here's the channels we wanna make buttons for
-let channels = [
-    {"display": "NotQuiteApex",  "channel": "notquiteapex"},
-    {"display": "JuiciBit",      "channel": "juicibit"},
-    {"display": "Vivicaster",    "channel": "vivicaster"},
-    {"display": "Percy_Creates", "channel": "percy_creates"},
-    {"display": "Alchana",       "channel": "alkana"},
-    {"display": "LyksaEXE",      "channel": "lyksaexe"}
-]
+let accessToken = "";
 
-// shuffling function, for random positioned buttons
-// https://stackoverflow.com/a/2450976
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
+function twitchGetToken() {
+	// Check cookie and if not expired return it
+	const expirationCookie = getCookie("accessToken_expires")
+	const expirationDate = new Date(expirationCookie);
+	const today = new Date();
+	if (today < expirationDate) {
+		accessToken = getCookie("accessToken");
+		return accessToken;
+	}
 
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
+	// if no cookie, make a new one
+	// POST https://id.twitch.tv/oauth2/token?client_id={}&client_secret={}&grant_type=client_credentials
+	let url = `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`;
+	$.ajax({
+		url: url,
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		async: false,
+		dataType: "json",
+		success: (data) => {
+			accessToken = data["access_token"];
+			setCookie("accessToken", accessToken, data["expires_in"]);
+		}
+	});
 
-    return array;
+	return accessToken;
 }
 
-// shuffle channels.
-channels = shuffle(channels);
+function twitchGetLive(userLogin) {
+	// GET https://api.twitch.tv/helix/streams?user_login={}
+	// check if resp['data'][0] exists. if it does theyre live and return true
+	// else return false
+	let isLive = false;
+	let url = `https://api.twitch.tv/helix/streams?user_login=${userLogin}`;
+	$.ajax({
+		url: url,
+		headers: {
+			"Client-ID": clientID,
+			"Authorization": "Bearer " + accessToken
+		},
+		async: false,
+		dataType: "json",
+		success: (data) => {
+			if (data["data"].length !== 0) {
+				isLive = true;
+			}
+		}
+	});
 
-// function to generate the twitch element.
-// make sure the appropriate script is included in the html.
-let genTwitch = (channel) => {
-    $("#twitchEmbed").empty();
-    new Twitch.Embed("twitchEmbed", {
-        width: "100%",
-        height: 720,
-
-        channel: channel,
-        parent: ["friendteam.biz"]
-    });
+	return isLive;
 }
 
-// we should really add a check to sort what channels are live currently
+function twitchGetLatestVod(userLogin) {
+	// GET https://api.twitch.tv/helix/users?login={} -> user_id
+	// GET https://api.twitch.tv/helix/videos?first=1&user_id={}
+	// use return dict of video
+	
+	let url = `https://api.twitch.tv/helix/users?login=${userLogin}`;
+	let userID = "";
+	$.ajax({
+		url: url,
+		headers: {
+			"Client-ID": clientID,
+			"Authorization": "Bearer " + accessToken
+		},
+		async: false,
+		dataType: "json",
+		success: (data) => {
+			if (data["data"].length === 0) {
+				console.error(`Could not find user with name ${userLogin}.`);
+				console.error(data);
+			}
 
-// and if a channel isnt live, pull up the latest vod to play
+			userID = data["data"][0]["id"];
+		}
+	});
 
-// make the buttons
-for (const channel of channels) {
-    $(document).ready(function() {
-        let btn = document.createElement("button");
-        btn.innerHTML = channel["display"];
-        btn.onclick = () => { genTwitch(channel["channel"]); };
-        btn.align = "center";
-        $("#channelButtons").append(btn);
-    });
+	let vodID = "";
+	url = `https://api.twitch.tv/helix/videos?first=1&user_id=${userID}`;
+	$.ajax({
+		url: url,
+		headers: {
+			"Client-ID": clientID,
+			"Authorization": "Bearer " + accessToken
+		},
+		async: false,
+		dataType: "json",
+		success: (data) => {
+			if (data["data"].length === 0) {
+				console.error(`Could not find VODs for user with name ${userLogin}.`);
+				console.error(data);
+			}
+
+			vodID = data["data"][0]["id"];
+		}
+	});
+
+	return vodID;
 }
 
-// put up the first stream in the array (random)
-genTwitch(channels[0]["channel"]);
+twitchGetToken();
