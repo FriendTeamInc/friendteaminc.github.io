@@ -5,9 +5,13 @@
 
 // here's the channels we wanna make buttons for
 let channels = [
-    "notquiteapex", "juicibit", "vivicaster",
-    "alkana", "percy_creates", "lyksaexe"
-];
+    {"display": "NotQuiteApex",  "channel": "notquiteapex"},
+    {"display": "JuiciBit",      "channel": "juicibit"},
+    {"display": "Vivicaster",    "channel": "vivicaster"},
+    {"display": "Percy_Creates", "channel": "percy_creates"},
+    {"display": "Alchana",       "channel": "alkana"},
+    {"display": "LyksaEXE",      "channel": "lyksaexe"}
+]
 
 // shuffling function, for random positioned buttons
 // https://stackoverflow.com/a/2450976
@@ -50,8 +54,8 @@ let genTwitch = (channel) => {
 for (const channel of channels) {
     $(document).ready(function() {
         let btn = document.createElement("button");
-        btn.innerHTML = channel;
-        btn.onclick = () => { genTwitch(channel); };
+        btn.innerHTML = channel["display"];
+        btn.onclick = () => { genTwitch(channel["channel"]); };
         btn.align = "center";
         $("#channelButtons").append(btn);
     });
