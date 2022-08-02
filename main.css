@@ -11,6 +11,7 @@
 	margin: auto;
 	width: 80%;
 	min-width: 800px;
+	max-width: 1400px;
 }
 
 #titlebar {
@@ -22,10 +23,11 @@
 
 #logo {
 	align-content: center;
+	margin: 10px;
 }
 
 #twitchEmbed {
-	max-width:1620px;
+	max-width:1280px;
 	height: 720;
 	margin:auto;
 	align-content: center;
@@ -45,6 +47,7 @@ body {
 	background-color: #666;
 	background-image: url("/assets/bg.png");
 	background-repeat: repeat;
+	background-position: center;
 }
 
 h1 {
