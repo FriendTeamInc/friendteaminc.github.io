@@ -77,11 +77,17 @@ function twitchGetLatestVod(userLogin) {
 			if (data["data"].length === 0) {
 				console.error(`Could not find user with name ${userLogin}.`);
 				console.error(data);
+				return;
 			}
 
 			userID = data["data"][0]["id"];
 		}
 	});
+
+	if (userID.length === 0) {
+		console.warn(`No user ${userLogin} found when searching for VODs. Returning...`);
+		return "";
+	}
 
 	let vodID = "";
 	url = `https://api.twitch.tv/helix/videos?first=1&user_id=${userID}`;
@@ -97,11 +103,17 @@ function twitchGetLatestVod(userLogin) {
 			if (data["data"].length === 0) {
 				console.error(`Could not find VODs for user with name ${userLogin}.`);
 				console.error(data);
+				return;
 			}
 
 			vodID = data["data"][0]["id"];
 		}
 	});
+
+	if (vodID.length === 0) {
+		console.warn(`No VODs found for existing user ${userLogin}. Returning...`);
+		return "";
+	}
 
 	return vodID;
 }

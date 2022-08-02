@@ -43,10 +43,9 @@ function shuffle(array) {
 }
 
 // shuffle channels and put the live ones on the left.
-let trueChannels = [];
 liveChannels = shuffle(liveChannels);
 deadChannels = shuffle(deadChannels);
-trueChannels.concat(liveChannels, deadChannels);
+const trueChannels = [...liveChannels, ...deadChannels];
 
 // function to generate the twitch element.
 // make sure the appropriate script is included in the html.
