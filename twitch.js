@@ -19,6 +19,7 @@ function twitchGetToken() {
 	let url = `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`;
 	$.ajax({
 		url: url,
+		type: "POST",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded"
 		},
