@@ -41,8 +41,10 @@
 	vertical-align: bottom;
 }
 
-html {
+body {
 	background-color: #666;
+	background-image: url("/assets/bg.png");
+	background-repeat: repeat;
 }
 
 h1 {

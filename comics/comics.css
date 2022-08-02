@@ -7,8 +7,9 @@
 	background-color: #445;
 }
 
-html {
+body {
 	background-color: #111;
+	background-image: url("/assets/bg-comics.png");
 }
 
 h1 {
