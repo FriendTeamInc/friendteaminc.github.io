@@ -57,11 +57,16 @@ async function generateChannels() {
                         rerunChannels.push(channel);
                     }
                 }
+                console.log(`finished with ${channel.channel}`)
             });
         }
     })();
 
     // shuffle channels and put the live ones on the left in random order while the reruns are ordered.
+    console.log("testing channels: ")
+    console.log(liveChannels);
+    console.log(rerunChannels);
+    console.log(deadChannels);
     liveChannels = shuffle(liveChannels);
     rerunChannels.sort((a, b) => parseInt(b["vod"]) - parseInt(a["vod"]));
     deadChannels = shuffle(deadChannels);
