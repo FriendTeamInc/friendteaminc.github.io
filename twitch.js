@@ -17,7 +17,7 @@ async function twitchGetToken() {
 	// POST https://id.twitch.tv/oauth2/token?client_id={}&client_secret={}&grant_type=client_credentials
 	const url = `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`;
 	const res = await $.ajax({
-		url: url, type: "POST", dataType: "json",
+		url: url, method: "POST", dataType: "json",
 		headers: { "Content-Type": "application/x-www-form-urlencoded" }
 	});
 	
@@ -34,12 +34,14 @@ async function twitchGetLive(accessToken, userLogin) {
 	let isLive = false;
 	const url = `https://api.twitch.tv/helix/streams?user_login=${userLogin}`;
 	const res = await $.ajax({
-		url: url, type: "GET", dataType: "json",
+		url: url, method: "GET", dataType: "json",
 		headers: {
 			"Client-ID": clientID,
 			"Authorization": "Bearer " + accessToken
 		}
 	});
+
+	console.log(res);
 
 	if (res["data"].length !== 0) {
 		isLive = true;
@@ -56,7 +58,7 @@ async function twitchGetLatestVod(accessToken, userLogin) {
 	let userID = "";
 	const urlUsers = `https://api.twitch.tv/helix/users?login=${userLogin}`;
 	const res = await $.ajax({
-		url: urlUsers, dataType: "json",
+		url: urlUsers, method: "GET", dataType: "json",
 		headers: {
 			"Client-ID": clientID,
 			"Authorization": "Bearer " + accessToken
@@ -79,7 +81,7 @@ async function twitchGetLatestVod(accessToken, userLogin) {
 	let vodID = "";
 	const urlVideos = `https://api.twitch.tv/helix/videos?first=1&user_id=${userID}`;
 	const res2 = await $.ajax({
-		url: urlVideos, dataType: "json",
+		url: urlVideos, method: "GET", dataType: "json",
 		headers: {
 			"Client-ID": clientID,
 			"Authorization": "Bearer " + accessToken
