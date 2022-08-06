@@ -12,7 +12,7 @@ const channels = [
     {"display": "Alchana",       "channel": "alkana"},
     {"display": "LyksaEXE",      "channel": "lyksaexe"}
 ];
-const accessToken = await twitchGetToken();
+const accessToken = twitchGetToken();
 
 // arrays for channels that are live or those that need to play vods
 let liveChannels = [];
@@ -25,11 +25,11 @@ for (const _channel of channels) {
         "vod": "",
         "live": false
     };
-    if (await twitchGetLive(channel.channel)) {
+    if (twitchGetLive(channel.channel)) {
         channel.live = true;
         liveChannels.push(channel);
     } else {
-        channel.vod = await twitchGetLatestVod(channel.channel);
+        channel.vod = twitchGetLatestVod(channel.channel);
         if (channel.vod.length === 0) {
             deadChannels.push(channel);
         } else {
