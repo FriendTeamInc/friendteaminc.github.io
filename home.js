@@ -4,25 +4,33 @@
 // <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 // here's the channels we wanna make buttons for
-let channels = [
-    {"vod": "", "display": "NotQuiteApex",  "channel": "notquiteapex"},
-    {"vod": "", "display": "JuiciBit",      "channel": "juicibit"},
-    {"vod": "", "display": "Vivicaster",    "channel": "vivicaster"},
-    {"vod": "", "display": "Percy_Creates", "channel": "percy_creates"},
-    {"vod": "", "display": "Alchana",       "channel": "alkana"},
-    {"vod": "", "display": "LyksaEXE",      "channel": "lyksaexe"}
-]
+const channels = [
+    {"display": "NotQuiteApex",  "channel": "notquiteapex"},
+    {"display": "JuiciBit",      "channel": "juicibit"},
+    {"display": "Vivicaster",    "channel": "vivicaster"},
+    {"display": "Percy_Creates", "channel": "percy_creates"},
+    {"display": "Alchana",       "channel": "alkana"},
+    {"display": "LyksaEXE",      "channel": "lyksaexe"}
+];
+const accessToken = await twitchGetToken();
 
 // arrays for channels that are live or those that need to play vods
 let liveChannels = [];
 let rerunChannels = [];
 let deadChannels = [];
-for (const channel of channels) {
-    if (twitchGetLive(channel["channel"])) {
+for (const _channel of channels) {
+    let channel = {
+        "channel": _channel.channel,
+        "display": _channel.display,
+        "vod": "",
+        "live": false
+    };
+    if (await twitchGetLive(channel.channel)) {
+        channel.live = true;
         liveChannels.push(channel);
     } else {
-        channel["vod"] = twitchGetLatestVod(channel["channel"]);
-        if (channel["vod"].length === 0) {
+        channel.vod = await twitchGetLatestVod(channel.channel);
+        if (channel.vod.length === 0) {
             deadChannels.push(channel);
         } else {
             rerunChannels.push(channel);
@@ -80,13 +88,13 @@ for (const channel of trueChannels) {
     $(document).ready(function() {
         let btn = document.createElement("button");
         btn.innerHTML = channel["display"];
-        btn.onclick = () => { generateTwitchElement(channel["channel"], channel["vod"]); };
+        btn.onclick = () => { generateTwitchElement(channel.channel, channel.vod); };
         btn.align = "center";
         $("#channelButtons").append(btn);
     });
 }
 
 // put up the first stream in the array (random)
-generateTwitchElement(trueChannels[0]["channel"], trueChannels[0]["vod"]);
+generateTwitchElement(trueChannels[0].channel, trueChannels[0].vod);
 console.log("trueChannels:");
 console.log(trueChannels);
