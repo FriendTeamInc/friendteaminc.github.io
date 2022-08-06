@@ -37,30 +37,27 @@ async function generateChannels() {
     let rerunChannels = [];
     let deadChannels = [];
 
-    await (async () => {
-        for (const c of channels) {
-            let channel = {
-                "channel": c["channel"],
-                "display": c["display"],
-                "vod": "",
-                "live": false
-            };
-            twitchGetLive(await accessToken, channel.channel).then(async isLive =>{
-                if (isLive) {
-                    channel.live = true;
-                    liveChannels.push(channel);
-                } else {
-                    channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
-                    if (channel.vod.length === 0) {
-                        deadChannels.push(channel);
-                    } else {
-                        rerunChannels.push(channel);
-                    }
-                }
-                console.log(`finished with ${channel.channel}`)
-            });
+    for await (const c of channels) {
+        let channel = {
+            "channel": c["channel"],
+            "display": c["display"],
+            "vod": "",
+            "live": false
+        };
+        let isLive = await twitchGetLive(await accessToken, channel.channel)
+        if (isLive) {
+            channel.live = true;
+            liveChannels.push(channel);
+        } else {
+            channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
+            if (channel.vod.length === 0) {
+                deadChannels.push(channel);
+            } else {
+                rerunChannels.push(channel);
+            }
         }
-    })();
+        console.log(`finished with ${channel.channel}`);
+    }
 
     // shuffle channels and put the live ones on the left in random order while the reruns are ordered.
     console.log("testing channels: ")
