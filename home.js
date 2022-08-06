@@ -15,13 +15,18 @@ let channels = [
 
 // arrays for channels that are live or those that need to play vods
 let liveChannels = [];
+let rerunChannels = [];
 let deadChannels = [];
 for (const channel of channels) {
     if (twitchGetLive(channel["channel"])) {
         liveChannels.push(channel);
     } else {
         channel["vod"] = twitchGetLatestVod(channel["channel"]);
-        deadChannels.push(channel);
+        if (channel["vod"].length === 0) {
+            deadChannels.push(channel);
+        } else {
+            rerunChannels.push(channel);
+        }
     }
 }
 
@@ -44,8 +49,9 @@ function shuffle(array) {
 
 // shuffle channels and put the live ones on the left.
 liveChannels = shuffle(liveChannels);
+rerunChannels = shuffle(rerunChannels);
 deadChannels = shuffle(deadChannels);
-const trueChannels = [...liveChannels, ...deadChannels];
+const trueChannels = [...liveChannels, ...rerunChannels, ...deadChannels];
 
 // function to generate the twitch element.
 // make sure the appropriate script is included in the html.
