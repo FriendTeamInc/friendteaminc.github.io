@@ -47,9 +47,9 @@ function shuffle(array) {
     return array;
 }
 
-// shuffle channels and put the live ones on the left.
+// shuffle channels and put the live ones on the left in random order while the reruns are ordered.
 liveChannels = shuffle(liveChannels);
-rerunChannels = shuffle(rerunChannels);
+rerunChannels.sort((a, b) => parseInt(a.vod) - parseInt(b.vod));
 deadChannels = shuffle(deadChannels);
 const trueChannels = [...liveChannels, ...rerunChannels, ...deadChannels];
 

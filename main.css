@@ -23,7 +23,8 @@
 
 #logo {
 	align-content: center;
-	margin: 8px;
+	margin: 4px;
+	width: 80px;
 }
 
 #twitchEmbed {
