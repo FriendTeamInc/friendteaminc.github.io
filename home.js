@@ -45,7 +45,7 @@ async function generateChannels() {
                 "vod": "",
                 "live": false
             };
-            twitchGetLive(await accessToken, channel.channel).then(isLive =>{
+            twitchGetLive(await accessToken, channel.channel).then(async isLive =>{
                 if (isLive) {
                     channel.live = true;
                     liveChannels.push(channel);
