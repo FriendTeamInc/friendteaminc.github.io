@@ -20,17 +20,17 @@ let rerunChannels = [];
 let deadChannels = [];
 for (const _channel of channels) {
     let channel = {
-        "channel": _channel.channel,
-        "display": _channel.display,
+        "channel": _channel["channel"],
+        "display": _channel["display"],
         "vod": "",
         "live": false
     };
-    if (twitchGetLive(channel.channel)) {
-        channel.live = true;
+    if (twitchGetLive(channel["channel"])) {
+        channel["live"] = true;
         liveChannels.push(channel);
     } else {
-        channel.vod = twitchGetLatestVod(channel.channel);
-        if (channel.vod.length === 0) {
+        channel["vod"] = twitchGetLatestVod(channel["channel"]);
+        if (channel["vod"].length === 0) {
             deadChannels.push(channel);
         } else {
             rerunChannels.push(channel);
@@ -57,7 +57,7 @@ function shuffle(array) {
 
 // shuffle channels and put the live ones on the left in random order while the reruns are ordered.
 liveChannels = shuffle(liveChannels);
-rerunChannels.sort((a, b) => parseInt(b.vod) - parseInt(a.vod));
+rerunChannels.sort((a, b) => parseInt(b["vod"]) - parseInt(a["vod"]));
 deadChannels = shuffle(deadChannels);
 const trueChannels = [...liveChannels, ...rerunChannels, ...deadChannels];
 
@@ -88,13 +88,13 @@ for (const channel of trueChannels) {
     $(document).ready(function() {
         let btn = document.createElement("button");
         btn.innerHTML = channel["display"];
-        btn.onclick = () => { generateTwitchElement(channel.channel, channel.vod); };
+        btn.onclick = () => { generateTwitchElement(channel["channel"], channel["vod"]); };
         btn.align = "center";
         $("#channelButtons").append(btn);
     });
 }
 
 // put up the first stream in the array (random)
-generateTwitchElement(trueChannels[0].channel, trueChannels[0].vod);
+generateTwitchElement(trueChannels[0]["channel"], trueChannels[0]["vod"]);
 console.log("trueChannels:");
 console.log(trueChannels);
