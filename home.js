@@ -82,3 +82,4 @@ for (const channel of trueChannels) {
 
 // put up the first stream in the array (random)
 generateTwitchElement(trueChannels[0]["channel"], trueChannels[0]["vod"]);
+console.log(JSON.stringify(trueChannels, null, 4));
