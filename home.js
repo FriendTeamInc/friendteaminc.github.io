@@ -26,7 +26,8 @@ for (const c of channels) {
         "vod": "",
         "live": false
     };
-    if (await twitchGetLive(await accessToken, channel["channel"])) {
+    let isLive = await twitchGetLive(await accessToken, channel["channel"]);
+    if (isLive) {
         channel["live"] = true;
         liveChannels.push(channel);
     } else {
