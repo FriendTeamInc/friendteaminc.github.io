@@ -2,16 +2,16 @@
 const clientID = "l74qhyxziqvrdz9q87g0dvxtptvix8";
 
 async function twitchGetToken() {
-	let accessToken;
-	const clientSecret = "9sbfbnd3wry7z5w71oh410ifklosda";
-	// Check cookie and if not expired return it
-	const expirationCookie = getCookie("accessToken_expires")
-	const expirationDate = new Date(expirationCookie);
-	const today = new Date();
-	if (today < expirationDate) {
-		accessToken = getCookie("accessToken");
-		return accessToken;
-	}
+	// let accessToken;
+	// const clientSecret = "9sbfbnd3wry7z5w71oh410ifklosda";
+	// // Check cookie and if not expired return it
+	// const expirationCookie = getCookie("accessToken_expires")
+	// const expirationDate = new Date(expirationCookie);
+	// const today = new Date();
+	// if (today < expirationDate) {
+	// 	accessToken = getCookie("accessToken");
+	// 	return accessToken;
+	// }
 
 	// if no cookie, make a new one
 	// POST https://id.twitch.tv/oauth2/token?client_id={}&client_secret={}&grant_type=client_credentials
@@ -22,7 +22,7 @@ async function twitchGetToken() {
 	});
 	
 	accessToken = res["access_token"];
-	setCookie("accessToken", accessToken, res["expires_in"]);
+	// setCookie("accessToken", accessToken, res["expires_in"]);
 
 	return accessToken;
 }
