@@ -26,11 +26,11 @@ for (const c of channels) {
         "vod": "",
         "live": false
     };
-    if (twitchGetLive(accessToken, channel["channel"])) {
+    if (await twitchGetLive(await accessToken, channel["channel"])) {
         channel["live"] = true;
         liveChannels.push(channel);
     } else {
-        channel["vod"] = twitchGetLatestVod(accessToken, channel["channel"]);
+        channel["vod"] = await twitchGetLatestVod(await accessToken, channel["channel"]);
         if (channel["vod"].length === 0) {
             deadChannels.push(channel);
         } else {
