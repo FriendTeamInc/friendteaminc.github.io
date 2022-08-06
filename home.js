@@ -18,10 +18,10 @@ const accessToken = twitchGetToken();
 let liveChannels = [];
 let rerunChannels = [];
 let deadChannels = [];
-for (const _channel of channels) {
+for (const c of channels) {
     let channel = {
-        "channel": _channel["channel"],
-        "display": _channel["display"],
+        "channel": c["channel"],
+        "display": c["display"],
         "vod": "",
         "live": false
     };
