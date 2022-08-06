@@ -13,6 +13,7 @@ const channels = [
     {"display": "LyksaEXE",      "channel": "lyksaexe"}
 ];
 const accessToken = twitchGetToken();
+console.log(accessToken);
 
 // arrays for channels that are live or those that need to play vods
 let liveChannels = [];
