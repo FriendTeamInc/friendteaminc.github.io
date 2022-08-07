@@ -7,7 +7,7 @@
 
 /* IDs */
 #mainview {
-	background-color: #eee;
+	background-color: #edb;
 	margin: auto;
 	width: 80%;
 	min-width: 800px;
@@ -17,7 +17,7 @@
 #titlebar {
 	position: -webkit-sticky;
 	position: sticky;
-	background-color: #eee;
+	background-color: #fec;
 	top: 0px;
 	height: 96px;
 }
@@ -115,13 +115,13 @@ button {
 }
 
 a:link {
-	color: #7c4;
+	color: #420;
 }
 a:visited {
-	color: #5a2;
+	color: #310;
 }
 a:active {
-	color: #fa2;
+	color: #640;
 }
 /* https://stackoverflow.com/a/52058198 */
 a[target="_blank"]:after {
