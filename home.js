@@ -35,7 +35,7 @@ async function generateChannels() {
     // arrays for channels that are live or those that need to play vods
     let channelsPromised = [];
     for (const c of channelsBase) {
-        channelsPromised.push(async () => {
+        channelsPromised.push((async () => {
             let channel = {
                 "channel": c["channel"],
                 "display": c["display"],
@@ -49,7 +49,7 @@ async function generateChannels() {
                 channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
             }
             return channel;
-        });
+        })());
     }
     let channels = await Promise.all(channelsPromised);
 
