@@ -43,7 +43,8 @@
 #copyrightNotice {
 	color: #666;
 	text-align:center;
-	
+}
+#copyrightNotice::before {
 	content: "Friend Team Inc. (c) 2020-2022. All characters, art, assets, etc. are subject to copyright uses and restrictions by their respective owners.";
 }
 
