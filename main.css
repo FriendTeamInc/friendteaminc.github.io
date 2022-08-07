@@ -7,7 +7,7 @@
 
 /* IDs */
 #mainview {
-	background-color: #edb;
+	background-color: #edc;
 	margin: auto;
 	width: 80%;
 	min-width: 800px;
@@ -17,7 +17,7 @@
 #titlebar {
 	position: -webkit-sticky;
 	position: sticky;
-	background-color: #fec;
+	background-color: #fed;
 	top: 0px;
 	height: 96px;
 }
@@ -44,7 +44,7 @@
 	color: #666;
 	text-align:center;
 }
-#copyrightNotice::before {
+#copyrightNotice:before {
 	content: "Friend Team Inc. (c) 2020-2022. All characters, art, assets, etc. are subject to copyright uses and restrictions by their respective owners.";
 }
 
@@ -115,13 +115,13 @@ button {
 }
 
 a:link {
-	color: #420;
+	color: #530;
 }
 a:visited {
 	color: #310;
 }
 a:active {
-	color: #640;
+	color: #750;
 }
 /* https://stackoverflow.com/a/52058198 */
 a[target="_blank"]:after {
