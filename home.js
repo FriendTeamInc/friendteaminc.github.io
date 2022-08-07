@@ -33,44 +33,37 @@ async function generateChannels() {
     const accessToken = twitchGetToken();
 
     // arrays for channels that are live or those that need to play vods
+    let liveChannels = [];
+    let rerunChannels = [];
+    let deadChannels = [];
     let channelsPromised = [];
     for (const c of channelsBase) {
         channelsPromised.push((async () => {
             let channel = {
-                "channel": c["channel"],
-                "display": c["display"],
+                "channel": c.channel,
+                "display": c.display,
                 "vod": "",
                 "live": false
             };
             let isLive = await twitchGetLive(await accessToken, channel.channel);
             if (isLive) {
                 channel.live = true;
+                liveChannels.push(channel);
             } else {
                 channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
+                if (channel.vod.length !== 0) {
+                    rerunChannels.push(channel)
+                } else {
+                    deadChannels.push(channel)
+                }
             }
-            return channel;
         })());
     }
-    let channels = await Promise.all(channelsPromised);
-
-    let liveChannels = [];
-    let rerunChannels = [];
-    let deadChannels = [];
-
-    for (const c of channels) {
-        console.log(c);
-        if (c.live) {
-            liveChannels.push(c);
-        } else if (c.vod.length !== 0) {
-            rerunChannels.push(c);
-        } else {
-            deadChannels.push(c);
-        }
-    }
+    await Promise.all(channelsPromised);
 
     // shuffle channels and put the live ones on the left in random order while the reruns are ordered.
     liveChannels = shuffle(liveChannels);
-    rerunChannels.sort((a, b) => parseInt(b["vod"]) - parseInt(a["vod"]));
+    rerunChannels.sort((a, b) => parseInt(b.vod) - parseInt(a.vod));
     deadChannels = shuffle(deadChannels);
     const trueChannels = [...liveChannels, ...rerunChannels, ...deadChannels];
 
@@ -86,29 +79,25 @@ async function generateChannels() {
             parent: ["friendteam.biz"]
         };
         if (vodID.length !== 0) {
-            args["video"] = vodID;
-            delete args["channel"];
+            args.video = vodID;
+            delete args.channel;
         }
         new Twitch.Embed("twitchEmbed", args);
     }
-
-    // we should really add a check to sort what channels are live currently
-
-    // and if a channel isnt live, pull up the latest vod to play
 
     // make the buttons
     for (const channel of trueChannels) {
         $(document).ready(function() {
             let btn = document.createElement("button");
-            btn.innerHTML = channel["display"];
-            btn.onclick = () => { generateTwitchElement(channel["channel"], channel["vod"]); };
+            btn.innerHTML = channel.display;
+            btn.onclick = () => { generateTwitchElement(channel.channel, channel.vod); };
             btn.align = "center";
             $("#channelButtons").append(btn);
         });
     }
 
     // put up the first stream in the array (random)
-    generateTwitchElement(trueChannels[0]["channel"], trueChannels[0]["vod"]);
+    generateTwitchElement(trueChannels[0].channel, trueChannels[0].vod);
 }
 
 generateChannels();

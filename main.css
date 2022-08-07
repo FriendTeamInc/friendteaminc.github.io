@@ -29,13 +29,19 @@
 
 #twitchEmbed {
 	max-width:1280px;
-	height: 720;
+	height: 720px;
 	margin:auto;
 	align-content: center;
 }
 
+#channelButtons {
+	text-align:center;
+	height:64px;
+}
+
 #copyrightNotice {
 	color: #666;
+	text-align:center;
 }
 
 /* Classes */
