@@ -4,7 +4,7 @@ const clientID = "l74qhyxziqvrdz9q87g0dvxtptvix8";
 async function twitchGetToken() {
 	let accessToken;
 	const clientSecret = "9sbfbnd3wry7z5w71oh410ifklosda";
-	
+
 	// // Check cookie and if not expired return it
 	// const expirationCookie = getCookie("accessToken_expires")
 	// const expirationDate = new Date(expirationCookie);
@@ -41,8 +41,6 @@ async function twitchGetLive(accessToken, userLogin) {
 			"Authorization": "Bearer " + accessToken
 		}
 	});
-
-	console.log(res);
 
 	if (res["data"].length !== 0) {
 		isLive = true;

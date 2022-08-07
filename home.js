@@ -22,7 +22,7 @@ function shuffle(array) {
 
 async function generateChannels() {
     // here's the channels we wanna make buttons for
-    const channels = [
+    const channelsBase = [
         {"display": "NotQuiteApex",  "channel": "notquiteapex"},
         {"display": "JuiciBit",      "channel": "juicibit"},
         {"display": "Vivicaster",    "channel": "vivicaster"},
@@ -33,37 +33,41 @@ async function generateChannels() {
     const accessToken = twitchGetToken();
 
     // arrays for channels that are live or those that need to play vods
+    let channelsPromised = [];
+    for (const c of channelsBase) {
+        channelsPromised.push(async () => {
+            let channel = {
+                "channel": c["channel"],
+                "display": c["display"],
+                "vod": "",
+                "live": false
+            };
+            let isLive = await twitchGetLive(await accessToken, channel.channel);
+            if (isLive) {
+                channel.live = true;
+            } else {
+                channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
+            }
+            return channel;
+        });
+    }
+    let channels = await Promise.all(channelsPromised);
+
     let liveChannels = [];
     let rerunChannels = [];
     let deadChannels = [];
 
-    for await (const c of channels) {
-        let channel = {
-            "channel": c["channel"],
-            "display": c["display"],
-            "vod": "",
-            "live": false
-        };
-        let isLive = await twitchGetLive(await accessToken, channel.channel)
-        if (isLive) {
-            channel.live = true;
-            liveChannels.push(channel);
+    for (const c of channels) {
+        if (c.live) {
+            liveChannels.push(c);
+        } else if (c.vod.length !== 0) {
+            rerunChannels.push(c);
         } else {
-            channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
-            if (channel.vod.length === 0) {
-                deadChannels.push(channel);
-            } else {
-                rerunChannels.push(channel);
-            }
+            deadChannels.push(c);
         }
-        console.log(`finished with ${channel.channel}`);
     }
 
     // shuffle channels and put the live ones on the left in random order while the reruns are ordered.
-    console.log("testing channels: ")
-    console.log(liveChannels);
-    console.log(rerunChannels);
-    console.log(deadChannels);
     liveChannels = shuffle(liveChannels);
     rerunChannels.sort((a, b) => parseInt(b["vod"]) - parseInt(a["vod"]));
     deadChannels = shuffle(deadChannels);
