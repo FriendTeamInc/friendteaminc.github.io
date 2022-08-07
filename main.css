@@ -7,7 +7,7 @@
 
 /* IDs */
 #mainview {
-	background-color: #edc;
+	background-color: #e0d8d0;
 	margin: auto;
 	width: 80%;
 	min-width: 800px;
@@ -17,7 +17,7 @@
 #titlebar {
 	position: -webkit-sticky;
 	position: sticky;
-	background-color: #fed;
+	background-color: #e8e0d8;
 	top: 0px;
 	height: 96px;
 }
