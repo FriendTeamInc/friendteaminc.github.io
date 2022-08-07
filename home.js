@@ -58,6 +58,7 @@ async function generateChannels() {
     let deadChannels = [];
 
     for (const c of channels) {
+        console.log(c);
         if (c.live) {
             liveChannels.push(c);
         } else if (c.vod.length !== 0) {
