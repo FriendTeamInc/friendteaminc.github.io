@@ -19,7 +19,7 @@
 	position: sticky;
 	background-color: #eee;
 	top: 0px;
-	height: 94px;
+	height: 96px;
 }
 
 #logo {
@@ -37,12 +37,14 @@
 
 #channelButtons {
 	text-align:center;
-	height: 60px;
+	height: 50px;
 }
 
 #copyrightNotice {
 	color: #666;
 	text-align:center;
+	
+	content: "Friend Team Inc. (c) 2020-2022. All characters, art, assets, etc. are subject to copyright uses and restrictions by their respective owners.";
 }
 
 /* Classes */
