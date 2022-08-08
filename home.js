@@ -67,6 +67,8 @@ async function generateChannels() {
 	deadChannels = shuffle(deadChannels);
 	const trueChannels = [...liveChannels, ...rerunChannels, ...deadChannels];
 
+	let currentChannel = "";
+
 	// function to generate the twitch element.
 	// make sure the appropriate script is included in the html.
 	let generateTwitchElement = (channel, vodID) => {
@@ -83,6 +85,7 @@ async function generateChannels() {
 			delete args.channel;
 		}
 		new Twitch.Embed("twitchEmbed", args);
+		currentChannel = channel;
 	}
 
 	// make the buttons
@@ -90,7 +93,10 @@ async function generateChannels() {
 		$(document).ready(function() {
 			let btn = document.createElement("button");
 			btn.innerHTML = channel.display;
-			btn.onclick = () => { generateTwitchElement(channel.channel, channel.vod); };
+			btn.onclick = () => {
+				if (currentChannel !== channel.channel)
+					generateTwitchElement(channel.channel, channel.vod);
+			};
 			btn.align = "center";
 			$("#channelButtons").append(btn);
 		});
