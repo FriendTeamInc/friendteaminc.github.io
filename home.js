@@ -7,9 +7,8 @@
 // https://stackoverflow.com/a/2450976
 function shuffle(array) {
 	let currentIndex = array.length, randomIndex;
-
-	// While there remain elements to shuffle.
-	while (currentIndex != 0) {
+	
+	while (currentIndex != 0) { // While there remain elements to shuffle.
 		// Pick a remaining element.
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex--;
@@ -21,6 +20,7 @@ function shuffle(array) {
 }
 
 async function generateChannels() {
+	const accessToken = twitchGetToken();
 	// here's the channels we wanna make buttons for
 	const channelsBase = [
 		{"display": "NotQuiteApex",  "channel": "notquiteapex"},
@@ -30,7 +30,6 @@ async function generateChannels() {
 		{"display": "Alchana",	   "channel": "alkana"},
 		{"display": "LyksaEXE",	  "channel": "lyksaexe"}
 	];
-	const accessToken = twitchGetToken();
 
 	// arrays for channels that are live or those that need to play vods
 	let liveChannels = [];
@@ -39,13 +38,14 @@ async function generateChannels() {
 	let channelsPromised = [];
 	for (const c of channelsBase) {
 		channelsPromised.push((async () => {
+			let isLive = await twitchGetLive(await accessToken, channel.channel);
 			let channel = {
 				"channel": c.channel,
 				"display": c.display,
 				"vod": "",
 				"live": false
 			};
-			let isLive = await twitchGetLive(await accessToken, channel.channel);
+
 			if (isLive) {
 				channel.live = true;
 				liveChannels.push(channel);
@@ -73,6 +73,7 @@ async function generateChannels() {
 	// make sure the appropriate script is included in the html.
 	let generateTwitchElement = (channel, vodID) => {
 		$("#twitchEmbed").empty();
+
 		let args = {
 			width: "100%",
 			height: 720,
@@ -85,6 +86,7 @@ async function generateChannels() {
 			delete args.channel;
 		}
 		new Twitch.Embed("twitchEmbed", args);
+
 		currentChannel = channel;
 	}
 
@@ -92,12 +94,15 @@ async function generateChannels() {
 	for (const channel of trueChannels) {
 		$(document).ready(function() {
 			let btn = document.createElement("button");
+
 			btn.innerHTML = channel.display;
-			btn.onclick = () => {
-				if (currentChannel !== channel.channel)
-					generateTwitchElement(channel.channel, channel.vod);
-			};
 			btn.align = "center";
+			btn.onclick = () => {
+				if (currentChannel !== channel.channel) {
+					generateTwitchElement(channel.channel, channel.vod);
+				}
+			};
+			
 			$("#channelButtons").append(btn);
 		});
 	}
