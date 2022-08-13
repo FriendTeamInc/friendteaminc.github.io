@@ -38,7 +38,7 @@ async function generateChannels() {
 	let channelsPromised = [];
 	for (const c of channelsBase) {
 		channelsPromised.push((async () => {
-			let isLive = await twitchGetLive(await accessToken, channel.channel);
+			let isLive = await twitchGetLive(await accessToken, c.channel);
 			let channel = {
 				"channel": c.channel,
 				"display": c.display,
