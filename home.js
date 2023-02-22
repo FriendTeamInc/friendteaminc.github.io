@@ -24,11 +24,23 @@ async function generateChannels() {
 	// here's the channels we wanna make buttons for
 	const channelsBase = [
 		{"display": "NotQuiteApex",  "channel": "notquiteapex"},
-		{"display": "JuiciBit",	  "channel": "juicibit"},
-		{"display": "Vivicaster",	"channel": "vivicaster"},
+		{"display": "JuiciBit",      "channel": "juicibit"},
 		{"display": "Percy_Creates", "channel": "percy_creates"},
-		{"display": "Alchana",	   "channel": "alkana"},
-		{"display": "LyksaEXE",	  "channel": "lyksaexe"}
+		{"display": "Alchana",       "channel": "alkana"},
+		{"display": "LyksaEXE",      "channel": "lyksaexe"}
+		
+		// cult
+		//{"display": "Landon", "channel": "landonzzz6"},
+		//{"display": "Magic", "channel": "magical_fool"},
+		//{"display": "Moura", "channel": "46moura"},
+		
+		// other
+		//{"display": "Vivicaster", "channel": "vivicaster"},
+		//{"display": "Ligma", "channel": "pissyellowcrocs"},
+		//{"display": "evets", "channel": "zevvets"},
+		//{"display": "aptmoo", "channel": "aptmoo"},
+		//{"display": "evets", "channel": "zevvets"},
+		//{"display": "Skysometric", "channel": "skysometric"},
 	];
 
 	// arrays for channels that are live or those that need to play vods
