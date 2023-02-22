@@ -54,6 +54,12 @@
 	vertical-align: bottom;
 }
 
+.aboutview {
+	margin-left: 5pt;
+	margin-right: 5pt;
+}
+
+/* Tags */
 body {
 	background-color: #666;
 	background-image: url("/assets/bg.png");
