@@ -13,11 +13,8 @@ body {
     background-color: #282828; /* #323; */
     background-image: radial-gradient(circle at center, #555 0%, #555 6%, transparent 7%);
     background-size: 15px 15px;
-}
-
-p {
+    
     line-height: 1.6;
-
     text-align: center;
 }
 
