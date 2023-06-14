@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TezCo. Direct</title>
+		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+		
+		<link rel="icon" type="image/x-icon" href="favicon.png">
+	</head>
+
+	<body>
+		<h1 id="title_text">TezCo. Direct</h1>
+		
+		<h3 id="countdowntimer_element"> &nbsp; </h3>
+
+		<p>
+			<!--
+				Currently, we're just using the Never Gonna Give You Up video.
+				This is subject to change. Hopefully. Maybe.
+			-->
+			<iframe
+				id="youtube_embed"
+				style="visibility:hidden;"
+
+				width="560"
+				height="315"
+				src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+				title="YouTube video player"
+				frameborder="0"
+				allow="
+					accelerometer;
+					autoplay;
+					clipboard-write;
+					encrypted-media;
+					gyroscope;
+					picture-in-picture;
+					web-share;
+				"
+				allowfullscreen
+			></iframe>
+		</p>
+
+		<p id="sponsoredby_text"> <br> </p>
+		<p id="sponsoredby_text">Sponsored by TezCo.</p>
+		<p id="copyright_text">Copyright (c) 2023 <br> TezCo., Friend Team Inc., and all presented characters <br> are owned by their respective copyright holders.</p>
+
+		
+		<script>
+			// https://www.w3schools.com/howto/howto_js_countdown.asp
+
+			let countDownDate = new Date("2023-05-30T04:00:00").getTime();
+
+			let countDownInterval = null;
+
+			let intervalFn = () => {
+				let nowDate = new Date().getTime();
+				let diff = countDownDate - nowDate;
+
+				let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+				let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+				let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+				if (diff < 0) {
+					document.getElementById("countdowntimer_element").innerHTML = "THE TIME IS NOW";
+					document.getElementById("youtube_embed").style.visibility = "visible";
+					clearInterval(countDownInterval);
+				} else {
+					document.getElementById("countdowntimer_element").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+				}
+			};
+
+			intervalFn();
+
+			countDownInterval = setInterval(intervalFn, 1000);
+		</script>
+	</body>
+</html> 

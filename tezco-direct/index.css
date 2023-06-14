@@ -1,0 +1,64 @@
+/*
+    This stylesheet is based off of https://tta.wtf/
+    Credit to TBD
+*/
+
+body {
+    margin: 40px auto;
+    padding: 0 10px;
+    max-width: 50em;
+    font-family: 'Comic Mono';
+
+    color: #C884C9; /* #eee; */
+    background-color: #282828; /* #323; */
+    background-image: radial-gradient(circle at center, #555 0%, #555 6%, transparent 7%);
+    background-size: 15px 15px;
+}
+
+p {
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+pre {
+    background-color: #212;
+    border-color: #eee;
+
+    padding: .75em;
+    border-width: thin;
+    border-style: solid;
+    border-radius: .5em;
+
+    overflow-x: auto;
+    white-space: pre;
+}
+
+p code {
+    background-color: #212;
+    border-color: #eee;
+
+    padding: 0 .2em;
+    border-width: thin;
+    border-style: solid;
+    border-radius: 2px;
+
+    white-space: nowrap;
+    word-break: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+
+    text-align: center;
+    font-family: 'Comic Mono';
+    font-weight: bold;
+}
+
+a {
+    color: #8ab4f8;
+}
+
+a:visited {
+    color: #C58AF9;
+}
