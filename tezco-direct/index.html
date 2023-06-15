@@ -45,12 +45,13 @@
 		
 		<script>
 			// https://www.w3schools.com/howto/howto_js_countdown.asp
-
-			let countDownDate = new Date("2023-06-30T18:00:00").getTime(); // 1688162400 * 1000;
+			// @ 2023 June 30th, 6pm EST (or 10pm GMT).
+			let offset = new Date().getTimezoneOffset() * 60 * 1000;
+			let countDownDate = 1688162400 * 1000 + offset;
+			console.log(countDownDate);
 
 			let intervalFn = () => {
-				let nowDate = new Date();
-				nowDate = nowDate.getTime() + nowDate.getTimezoneOffset() * 60 * 1000;
+				let nowDate = new Date().getTime() + offset;
 				let diff = countDownDate - nowDate;
 
 				let days = Math.floor(diff / (1000 * 60 * 60 * 24));

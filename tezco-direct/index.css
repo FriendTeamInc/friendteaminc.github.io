@@ -1,7 +1,4 @@
-/*
-    This stylesheet is based off of https://tta.wtf/
-    Credit to TBD
-*/
+/* This stylesheet is based off of https://tta.wtf/ */
 
 body {
     margin: 40px auto;
@@ -11,7 +8,7 @@ body {
 
     color: #C884C9; /* #eee; */
     background-color: #282828; /* #323; */
-    background-image: radial-gradient(circle at center, #555 0%, #555 6%, transparent 7%);
+    background-image: radial-gradient(circle at center, #555 0%, #555 5%, transparent 10%);
     background-size: 15px 15px;
     
     line-height: 1.6;
@@ -38,7 +35,7 @@ p code {
     padding: 0 .2em;
     border-width: thin;
     border-style: solid;
-    border-radius: 2px;
+    border-radius: 0.02em;
 
     white-space: nowrap;
     word-break: normal;
