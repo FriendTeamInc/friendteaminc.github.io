@@ -44,7 +44,7 @@ pre {
     word-break: normal;
 } */
 
-#copyright_text {
+p {
     margin: auto;
 
     /* width: 30em; */
