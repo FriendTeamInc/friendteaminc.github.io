@@ -13,10 +13,10 @@
 	<body>
 		<h1 id="title_text">TezCo. Direct</h1>
 		
-		<h3 id="countdowntimer_element"> &nbsp; </h3>
+		<h2 id="countdowntimer_element"> &nbsp; </h3>
 
-		<p id="pre_embed" style="display:initial; font-size:2em"> <b> <br><br> SEE YOU SOON! <br><br><br> </b> </p>
-		<p id="youtube_embed" style="display:none;">
+		<p id="pre_embed">SEE YOU SOON!</p>
+		<p id="youtube_embed">
 			<!--
 				Currently, we're just using the Never Gonna Give You Up video.
 				This is subject to change. Hopefully. Maybe.
@@ -40,9 +40,7 @@
 			></iframe>
 		</p>
 
-		<p> <br> </p>
 		<p id="sponsoredby_text">Sponsored by TezCo.</p>
-		<p><br></p>
 		<p id="copyright_text">Copyright (c) 2023 <br> TezCo., Friend Team Inc., and all presented characters are owned by their respective copyright holders.</p>
 
 		
@@ -66,7 +64,7 @@
 				if (diff < 0) {
 					document.getElementById("countdowntimer_element").innerHTML = "THE TIME IS NOW";
 					document.getElementById("pre_embed").style.display = "none";
-					document.getElementById("youtube_embed").style.display = "initial";
+					document.getElementById("youtube_embed").style.display = "block";
 					clearInterval(countDownInterval);
 				} else {
 					document.getElementById("countdowntimer_element").innerHTML = t;
