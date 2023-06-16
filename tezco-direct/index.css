@@ -1,8 +1,11 @@
 /* This stylesheet is based off of https://tta.wtf/ */
 
+/* Here's the quick debugger. Uncomment it to use it. */
+/* * { outline: solid 0.25rem hsla(200, 50%, 50%, 0.25); } */
+
 body {
-    margin: 40px auto;
-    padding: 0 10px;
+    margin: 2em auto;
+    padding: 0 1em;
     max-width: 50em;
     font-family: 'Comic Mono';
 
@@ -28,7 +31,7 @@ pre {
     white-space: pre;
 }
 
-p code {
+/* code {
     background-color: #212;
     border-color: #eee;
 
@@ -39,6 +42,14 @@ p code {
 
     white-space: nowrap;
     word-break: normal;
+} */
+
+#copyright_text {
+    margin: auto;
+
+    /* width: 30em; */
+    max-width: 30em;
+    /* min-width: 30em; */
 }
 
 h1, h2, h3, h4, h5, h6 {
