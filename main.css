@@ -42,7 +42,7 @@
 
 #copyrightNotice {
 	color: #666;
-	text-align:center;
+	text-align: center;
 }
 #copyrightNotice:before {
 	content: "Friend Team Inc. (c) 2020-2023. All characters, art, assets, etc. are subject to copyright uses and restrictions by their respective owners.";
@@ -65,44 +65,35 @@ body {
 	background-image: url("/assets/bg.png");
 	background-repeat: repeat;
 	background-position: center;
+	
+	font-family: "Inconsolata";
 }
 
 h1 {
 	margin-top: 1%;
 	margin-bottom: 1%;
 	font-size: 32px;
-	font-family: "Inconsolata";
 	font-weight: 800;
 }
 
-h2 {
+h2 h3 h4 h5 {
 	display: inline;
 	margin-top: 1%;
-	margin-bottom: 6px;
+	margin-bottom: 1%;
 	font-size: 24px;
-	font-family: "Inconsolata";
 	font-weight: 800;
 }
 
-h4 {
-	display: inline;
-	margin-top: 1%;
-	margin-bottom: 6px;
+h4 h5 {
 	font-size: 16px;
-	font-family: "Inconsolata";
 	font-weight: 700;
 }
+
 h5 {
-	display: inline;
-	margin-top: 1%;
-	margin-bottom: 6px;
 	font-size: 12px;
-	font-family: "Inconsolata";
-	font-weight: 700;
 }
 
 p {
-	font-family: "Inconsolata";
 	font-weight: 500;
 }
 
@@ -111,7 +102,6 @@ p.tab {
 }
 
 button {
-	font-family: "Inconsolata";
 	font-weight: 300;
 	font-size: 16px;
 	margin: 8px;
