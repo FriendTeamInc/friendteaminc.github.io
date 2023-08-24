@@ -26,7 +26,7 @@ async function generateChannels() {
 		{"display": "NotQuiteApex",  "channel": "notquiteapex"},
 		{"display": "JuiciBit",      "channel": "juicibit"},
 		{"display": "Percy_Creates", "channel": "percy_creates"},
-		{"display": "Alchana",       "channel": "alkana"},
+		{"display": "Prismatica",    "channel": "iris_prismatica"},
 		{"display": "LyksaEXE",      "channel": "lyksaexe"}
 		
 		// cult
@@ -50,7 +50,7 @@ async function generateChannels() {
 	let channelsPromised = [];
 	for (const c of channelsBase) {
 		channelsPromised.push((async () => {
-			console.log(`getting live ${c.channel}`);
+			console.trace(`getting live ${c.channel}`);
 			let isLive = await twitchGetLive(await accessToken, c.channel);
 			let channel = {
 				"channel": c.channel,
@@ -58,20 +58,20 @@ async function generateChannels() {
 				"vod": "",
 				"live": false
 			};
-			console.log(`no live err ${c.channel}`);
+			console.trace(`no live err ${c.channel}`);
 
 			if (isLive) {
 				channel.live = true;
 				liveChannels.push(channel);
 			} else {
-				console.log(`getting vod ${c.channel}`);
+				console.trace(`getting vod ${c.channel}`);
 				channel.vod = await twitchGetLatestVod(await accessToken, channel.channel);
 				if (channel.vod.length !== 0) {
 					rerunChannels.push(channel)
 				} else {
 					deadChannels.push(channel)
 				}
-				console.log(`no vod err ${c.channel}`);
+				console.trace(`no vod err ${c.channel}`);
 			}
 		})());
 	}
