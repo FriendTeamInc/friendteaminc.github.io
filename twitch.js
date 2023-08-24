@@ -17,15 +17,15 @@ async function twitchGetToken() {
 	// if no cookie, make a new one
 	// POST https://id.twitch.tv/oauth2/token?client_id={}&client_secret={}&grant_type=client_credentials
 	const url = `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`;
-	const res = await $.ajax({
+	const pre_res = $.ajax({
 		url: url, method: "POST", dataType: "json",
 		headers: { "Content-Type": "application/x-www-form-urlencoded" }
-	});
-	
-	res.catch((e) => {
+	}).catch((e) => {
 		console.error("Error in attempting to grab credentials for Twitch!");
 		console.error(e);
 	})
+	
+	const res = await pre_res;
 	
 	accessToken = res["access_token"];
 	setCookie("accessToken", accessToken, res["expires_in"]);
