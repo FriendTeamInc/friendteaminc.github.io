@@ -22,6 +22,11 @@ async function twitchGetToken() {
 		headers: { "Content-Type": "application/x-www-form-urlencoded" }
 	});
 	
+	res.catch((e) => {
+		console.error("Error in attempting to grab credentials for Twitch!");
+		console.error(e);
+	})
+	
 	accessToken = res["access_token"];
 	setCookie("accessToken", accessToken, res["expires_in"]);
 
