@@ -26,8 +26,7 @@ async function generateChannels() {
 		{"display": "NotQuiteApex",  "channel": "notquiteapex"},
 		{"display": "JuiciBit",      "channel": "juicibit"},
 		{"display": "Percy_Creates", "channel": "percy_creates"},
-		{"display": "Prismatica",    "channel": "iris_prismatica"},
-		{"display": "LyksaEXE",      "channel": "lyksaexe"}
+		{"display": "Prismatica",    "channel": "iris_prismatica"}
 		
 		// cult
 		//{"display": "Landon", "channel": "landonzzz6"},
@@ -35,12 +34,10 @@ async function generateChannels() {
 		//{"display": "Moura", "channel": "46moura"},
 		
 		// other
-		//{"display": "Vivicaster", "channel": "vivicaster"},
-		//{"display": "Ligma", "channel": "pissyellowcrocs"},
 		//{"display": "evets", "channel": "zevvets"},
 		//{"display": "aptmoo", "channel": "aptmoo"},
-		//{"display": "evets", "channel": "zevvets"},
 		//{"display": "Skysometric", "channel": "skysometric"},
+		//{"display": "Qixils", "channel": "lexikiq"},
 	];
 
 	// arrays for channels that are live or those that need to play vods
